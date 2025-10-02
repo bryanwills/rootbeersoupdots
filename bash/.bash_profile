@@ -3,6 +3,13 @@ Darwin) brew_prefix=/opt/homebrew              ;;
 Linux)  brew_prefix=/home/linuxbrew/.linuxbrew ;;
 esac
 
+modules_init=$brew_prefix/opt/lmod/init/profile
+
+if [[ -f $modules_init && -r $modules_init ]]; then
+    source $modules_init
+    module use ~/.modules/modulefiles
+fi
+
 [[ $(uname -s) == Linux ]] && ulimit -c unlimited
 
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
