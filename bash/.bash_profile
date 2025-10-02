@@ -15,7 +15,8 @@ fi
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 if [[ $(uname -s) == Darwin ]]; then
-    PATH=$brew_prefix/opt/coreutils/libexec/gnubin:/usr/local/texlive/2024basic/bin/universal-darwin${PATH:+:$PATH}
+    module load coreutils
+    module load basictex
 fi
 
 [[ -d $brew_prefix ]] && eval "$($brew_prefix/bin/brew shellenv)"
