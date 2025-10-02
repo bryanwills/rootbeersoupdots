@@ -3,7 +3,9 @@ Darwin) brew_prefix=/opt/homebrew              ;;
 Linux)  brew_prefix=/home/linuxbrew/.linuxbrew ;;
 esac
 
-modules_init=$brew_prefix/opt/lmod/init/profile
+[[ -d $brew_prefix ]] && eval "$($brew_prefix/bin/brew shellenv bash)"
+
+modules_init=$HOMEBREW_PREFIX/opt/lmod/init/profile
 
 if [[ -f $modules_init && -r $modules_init ]]; then
     source $modules_init
@@ -19,7 +21,6 @@ if [[ $(uname -s) == Darwin ]]; then
     module load basictex
 fi
 
-[[ -d $brew_prefix ]] && eval "$($brew_prefix/bin/brew shellenv)"
 
 export PATH=$HOME/.local/bin${PATH:+:$PATH}
 
